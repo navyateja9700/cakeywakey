@@ -565,10 +565,14 @@
         
         // Redirect to WhatsApp
         setTimeout(() => {
+          const cakeName = "Chocolate";
           const message = `Hi CakeyWakey! I'd like to order the ${cakeName} cake for ₹799.`;
           const encodedMessage = encodeURIComponent(message);
-          window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
+          // Example with Indian number: 9700279999
+          const phoneNumber = "919700279941";  // Replace this with your actual number
+          window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
         }, 1000);
+
       });
     });
     
@@ -612,3 +616,4 @@
   </script>
 </body>
 </html>
+
