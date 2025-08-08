@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CakeyWakey - Dark Delights</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-pink: #ff6b9d;
+      --secondary-pink: #ff4d8d;
+      --dark-bg: #121212;
+      --darker-bg: #0a0a0a;
+      --card-bg: #1e1e1e;
+      --text-light: #ffffff;
+      --text-gray: #b0b0b0;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+    }
+    
+    section {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, var(--darker-bg) 0%, #1a1a1a 100%);
+      position: relative;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1562440498-2a0224da1ef7?auto=format&fit=crop&w=1350&q=80') center/cover;
+      opacity: 0.15;
+      z-index: 0;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 5rem;
+      color: var(--primary-pink);
+      text-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+      margin-bottom: 1rem;
+    }
+    
+    .hero p {
+      font-size: 1.8rem;
+      color: var(--text-gray);
+      margin-top: 1rem;
+      font-weight: 300;
+      max-width: 800px;
+    }
+    
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--primary-pink);
+      font-size: 2rem;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+      z-index: 10;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+      40% {transform: translateY(-20px) translateX(-50%);}
+      60% {transform: translateY(-10px) translateX(-50%);}
+    }
+    
+    .gallery {
+      background: linear-gradient(135deg, var(--darker-bg) 0%, #1a1a1a 100%);
+      padding: 6rem 2rem;
+    }
+    
+    .gallery h2 {
+      font-size: 3rem;
+      color: var(--primary-pink);
+      margin-bottom: 3rem;
+      font-family: 'Pacifico', cursive;
+    }
+    
+    .cake-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+       transition: transform 0.3s;
+    }
+    
+    .cake-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      width: 350px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      z-index: 1;
+      border: 1px solid rgba(255, 107, 157, 0.2);
+    }
+    
+    .cake-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(255, 107, 157, 0.2);
+    }
+    
+    .cake-img-container {
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .cake-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+    }
+    
+    .cake-card:hover .cake-img {
+      transform: scale(1.2) rotate(2deg);
+    }
+    
+    .cake-info {
+      padding: 2rem;
+    }
+    
+    .cake-info h3 {
+      font-size: 1.8rem;
+      color: var(--primary-pink);
+      margin-bottom: 1rem;
+    }
+    
+    .cake-info p {
+      font-size: 1.1rem;
+      color: var(--text-gray);
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+    
+    .price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-pink);
+      margin-bottom: 1.5rem;
+    }
+    
+    .buy-btn {
+      background: var(--primary-pink);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+    }
+    
+    .buy-btn:hover {
+      background: #ff2d75;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(255, 107, 157, 0.4);
+    }
+    
+    .about {
+      background: linear-gradient(135deg, #1a1a1a 0%, var(--darker-bg) 100%);
+      position: relative;
+    }
+    
+    .about::after {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23121212" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%23121212" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23121212"/></svg>') repeat-x;
+      z-index: 1;
+    }
+    
+    .about-content {
+      max-width: 800px;
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 2;
+      border: 1px solid rgba(255, 107, 157, 0.2);
+    }
+    
+    .about h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      color: var(--primary-pink);
+      margin-bottom: 2rem;
+    }
+    
+    .about p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--text-gray);
+      margin-bottom: 1.5rem;
+    }
+    
+    .contact {
+      background: var(--darker-bg);
+      padding: 6rem 2rem;
+    }
+    
+    .contact h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      color: var(--primary-pink);
+      margin-bottom: 2rem;
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .contact-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      flex: 1;
+      min-width: 250px;
+      transition: transform 0.3s;
+      border: 1px solid rgba(255, 107, 157, 0.2);
+    }
+    
+    .contact-card:hover {
+      transform: translateY(-10px) scale(1.15);
+      box-shadow: 0 15px 30px rgba(255, 107, 157, 0.2);
+    }
+    
+    .contact-card i {
+      font-size: 2.5rem;
+      color: var(--primary-pink);
+      margin-bottom: 1rem;
+    }
+    
+    .contact-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary-pink);
+    }
+    
+    .contact-card p {
+      font-size: 1.1rem;
+      color: var(--text-gray);
+    }
+    
+    .floating-cakes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    
+    .floating-cake {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.4;
+      animation: float 15s infinite ease-in-out;
+      filter: drop-shadow(0 0 10px rgba(255, 107, 157, 0.5));
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(5deg); }
+    }
+    
+    /* Parallax Effect */
+    .parallax-bg {
+      position: absolute;
+      width: 100%;
+      height: 120%;
+      top: 0;
+      left: 0;
+      background: url('https://images.unsplash.com/photo-1562440498-2a0224da1ef7?auto=format&fit=crop&w=1350&q=80') center/cover;
+      opacity: 0.05;
+      z-index: 0;
+      will-change: transform;
+    }
+    
+    /* Zoom-in/Zoom-out Effect */
+    .zoom-in-out {
+      animation: zoomInOut 8s infinite alternate ease-in-out;
+    }
+    
+    @keyframes zoomInOut {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); }
+    }
+    
+    /* Confetti Effect */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: var(--primary-pink);
+      opacity: 0;
+      z-index: 1000;
+      animation: confetti-fall 3s ease-in-out forwards;
+    }
+  
+
+    
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.4rem;
+      }
+      
+      .cake-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .cake-card {
+        width: 100%;
+        max-width: 350px;
+      }
+    }
+    .cake-container:hover{
+            transform: scale(0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="parallax-bg"></div>
+    
+    
+    <div class="hero-content zoom-in-out">
+      <h1>CakeyWakey</h1>
+      <p>Dark, Decadent, Delicious.</p>
+    </div>
+    
+    <div class="scroll-down">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <h2>Our Signature Cakes</h2>
+    
+    <div class="cake-container">
+      <div class="cake-card">
+        <div class="cake-img-container">
+          <img src="https://theovenchef.com/wp-content/uploads/2023/08/WhatsApp-Image-2023-11-01-at-5.39.28-PM-1-scaled-e1698841246352.jpeg" alt="Chocolate Fantasy" class="cake-img">
+        </div>
+        <div class="cake-info">
+          <h3>Chocolate Fantasy</h3>
+          <p>Rich chocolate cake with layers of fudge and chocolate ganache</p>
+          <div class="price">₹799</div>
+          <button class="buy-btn" data-cake="Chocolate Fantasy">
+            <i class="fab fa-whatsapp"></i> Order Now
+          </button>
+        </div>
+      </div>
+      
+      <div class="cake-card" id="caks">
+        <div class="cake-img-container">
+          <img src="https://atsloanestable.com/wp-content/uploads/2022/01/small-vanilla-cake3.jpg" alt="Vanilla Dream" class="cake-img">
+        </div>
+        <div class="cake-info">
+          <h3>Vanilla Dream</h3>
+          <p>Light vanilla sponge with fresh cream and seasonal fruits</p>
+          <div class="price">₹799</div>
+          <button class="buy-btn" data-cake="Vanilla Dream">
+            <i class="fab fa-whatsapp"></i> Order Now
+          </button>
+        </div>
+      </div>
+      
+      <div class="cake-card">
+        <div class="cake-img-container">
+          <img src="https://assets.winni.in/product/primary/2023/4/84338.jpeg?dpr=1&w=500" alt="Red Velvet Bliss" class="cake-img">
+        </div>
+        <div class="cake-info">
+          <h3>Red Velvet Bliss</h3>
+          <p>Classic red velvet with cream cheese frosting</p>
+          <div class="price">₹799</div>
+          <button class="buy-btn" data-cake="Red Velvet Bliss">
+            <i class="fab fa-whatsapp"></i> Order Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="about-content">
+      <h2>About CakeyWakey</h2>
+      <p>At CakeyWakey, we believe every day should start with something sweet. Our master bakers create each cake with premium ingredients, passion, and a sprinkle of magic.</p>
+      <p>Founded in 2025, we've been delivering happiness one slice at a time. Whether it's a special occasion or just because, our cakes are designed to make your mornings brighter.</p>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>Contact Us</h2>
+    
+    <div class="contact-info">
+      <div class="contact-card">
+        <i class="fas fa-phone-alt"></i>
+        <h3>Call Us</h3>
+        <p>+917013072714</p>
+      </div>
+      
+      <div class="contact-card">
+        <i class="fas fa-envelope"></i>
+        <h3>Email Us</h3>
+        <p>hello@cakeywakey.com</p>
+      </div>
+      
+      <div class="contact-card">
+        <i class="fas fa-map-marker-alt"></i>
+        <h3>Visit Us</h3>
+        <p>Hyderabad</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Hero animation
+    gsap.from(".hero h1", {
+      y: 100,
+      opacity: 0,
+      duration: 1.5,
+      ease: "back.out(1.7)"
+    });
+    
+    gsap.from(".hero p", {
+      y: 50,
+      opacity: 0,
+      duration: 1.5,
+      delay: 0.5,
+      ease: "power2.out"
+    });
+    
+    // Parallax effect
+    gsap.to(".parallax-bg", {
+      y: 100,
+      scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+    
+    // Cake cards animation
+    gsap.utils.toArray(".cake-card").forEach((card, i) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: "top 90%",
+          toggleActions: "play none none none"
+        },
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        delay: i * .6,
+        ease: "back.out(1.2)"
+      });
+      
+      // Hover zoom effect
+      card.addEventListener("mouseenter", () => {
+        gsap.to(card.querySelector(".cake-img"), {
+          scale: 1.2,
+          duration: 0.5
+        });
+      });
+      
+      card.addEventListener("mouseleave", () => {
+        gsap.to(card.querySelector(".cake-img"), {
+          scale: 1,
+          duration: 0.5
+        });
+      });
+    });
+    
+    // Buy button functionality
+    document.querySelectorAll(".buy-btn").forEach(button => {
+      button.addEventListener("click", function() {
+        const cakeName = this.getAttribute("data-cake");
+        
+        // Create confetti effect
+        for (let i = 0; i < 50; i++) {
+          createConfetti(this);
+        }
+        
+        // Redirect to WhatsApp
+        setTimeout(() => {
+          const message = `Hi CakeyWakey! I'd like to order the ${cakeName} cake for ₹799.`;
+          const encodedMessage = encodeURIComponent(message);
+          window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
+        }, 1000);
+      });
+    });
+    
+    function createConfetti(element) {
+      const confetti = document.createElement("div");
+      confetti.className = "confetti";
+      
+      const rect = element.getBoundingClientRect();
+      const x = rect.left + Math.random() * rect.width;
+      const y = rect.top + Math.random() * rect.height;
+      
+      const colors = ['#ff6b9d', '#ff8fab', '#ffc2d1', '#d147a3'];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      
+      const size = Math.random() * 10 + 5;
+      
+      confetti.style.left = `${x}px`;
+      confetti.style.top = `${y}px`;
+      confetti.style.width = `${size}px`;
+      confetti.style.height = `${size}px`;
+      confetti.style.backgroundColor = color;
+      confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+      
+      confetti.style.animationDuration = `${Math.random() * 2 + 2}s`;
+      
+      document.body.appendChild(confetti);
+      
+      setTimeout(() => {
+        confetti.remove();
+      }, 3000);
+    }
+    
+    // Scroll to sections when clicking scroll down arrow
+    document.querySelector('.scroll-down').addEventListener('click', () => {
+      gsap.to(window, {
+        duration: 1.5,
+        scrollTo: ".gallery",
+        ease: "power2.inOut"
+      });
+    });
+  </script>
+</body>
+</html>
